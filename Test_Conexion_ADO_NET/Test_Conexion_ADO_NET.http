@@ -1,0 +1,6 @@
+@Test_Conexion_ADO_NET_HostAddress = http://localhost:5201
+
+GET {{Test_Conexion_ADO_NET_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
