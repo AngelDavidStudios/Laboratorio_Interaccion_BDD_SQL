@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_Conexion_ADO_NET", "Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.Models", "ADO.Models\ADO.Models.csproj", "{52A75425-C003-4DF3-85C0-B586EDA6016B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy_System", "Udemy_System\Udemy_System.csproj", "{EF9ED154-6632-4F28-B03E-96F21BA97E2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{52A75425-C003-4DF3-85C0-B586EDA6016B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52A75425-C003-4DF3-85C0-B586EDA6016B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52A75425-C003-4DF3-85C0-B586EDA6016B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF9ED154-6632-4F28-B03E-96F21BA97E2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF9ED154-6632-4F28-B03E-96F21BA97E2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF9ED154-6632-4F28-B03E-96F21BA97E2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF9ED154-6632-4F28-B03E-96F21BA97E2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
