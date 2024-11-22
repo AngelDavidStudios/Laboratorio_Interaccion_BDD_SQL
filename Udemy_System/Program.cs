@@ -83,12 +83,12 @@ class Program
             }
             
             Console.WriteLine("\n--- Lista de Cursos ---");
-            Console.WriteLine($"{"ID Curso",-5} {"Nombre Curso",-20} {"Descripción",-20} {"Precios X Hora",-30} {"Tipo de Curso",-15}");
-            Console.WriteLine(new string('-', 90));
+            Console.WriteLine($"{"ID Curso",-5} {"Nombre Curso",-30} {"Descripción",-30} {"Precios X Hora",-30} {"Tipo de Curso",-20}");
+            Console.WriteLine(new string('-', 115));
             
             foreach (var curso in cursos)
             {
-                Console.WriteLine($"{curso.Idcurso,-5} {curso.NombreCurso,-20} {curso.Descripcion,-20} {curso.PrecioxHora,-30} {curso.TipoCurso,-15}");
+                Console.WriteLine($"{curso.Idcurso,-5} {curso.NombreCurso,-30} {curso.Descripcion,-30} {curso.PrecioxHora,-35} {curso.TipoCurso,-25}");
             }
         }
         catch (Exception e)
