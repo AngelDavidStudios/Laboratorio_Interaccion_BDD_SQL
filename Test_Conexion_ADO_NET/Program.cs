@@ -11,6 +11,7 @@ builder.Services.AddControllers();
 
 // Repositories
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<ICursoRepository, CursoRepository>();
 
 var app = builder.Build();
 
