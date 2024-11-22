@@ -29,7 +29,7 @@ public class CursoRepository: ICursoRepository
                     Idcurso = Convert.ToInt32(reader["IDCurso"]),
                     NombreCurso = reader["NombreCurso"].ToString(),
                     Descripcion = reader["Descripcion"].ToString(),
-                    PrecioxHora = Convert.ToDecimal(reader["PrecioXHora"]),
+                    PrecioxHora = Convert.ToDouble(reader["PrecioXHora"]),
                     TipoCurso = reader["TipoCurso"].ToString()
                 };
                 courses.Add(course);
@@ -53,7 +53,7 @@ public class CursoRepository: ICursoRepository
                 course.Idcurso = Convert.ToInt32(reader["IDCurso"]);
                 course.NombreCurso = reader["NombreCurso"].ToString();
                 course.Descripcion = reader["Descripcion"].ToString();
-                course.PrecioxHora = Convert.ToDecimal(reader["PrecioXHora"]);
+                course.PrecioxHora = Convert.ToDouble(reader["PrecioXHora"]);
                 course.TipoCurso = reader["TipoCurso"].ToString();
             }
         }

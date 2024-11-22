@@ -4,15 +4,17 @@ using Udemy_System.Services;
 class Program
 {
     private static readonly StudentService _studentService = new StudentService();
+    private static readonly CursoService _cursoService = new CursoService();
+    
     static async Task Main(string[] args)
     {
         while (true)
         {
             Console.WriteLine("\n--- Menú ---");
-            Console.WriteLine("1. Listar estudiantes");
-            Console.WriteLine("2. Agregar estudiante");
-            Console.WriteLine("3. Actualizar estudiante");
-            Console.WriteLine("4. Eliminar estudiante");
+            Console.WriteLine("1. Listar Cursos");
+            Console.WriteLine("2. Agregar Curso");
+            Console.WriteLine("3. Actualizar Curso");
+            Console.WriteLine("4. Eliminar Curso");
             Console.WriteLine("5. Salir");
             Console.Write("Selecciona una opción: ");
 
@@ -21,16 +23,16 @@ class Program
             switch (option)
             {
                 case "1":
-                    await ListStudentsAsync();
+                    await ListCursoAsync();
                     break;
                 case "2":
-                    await AddStudentAsync();
+                    await AddCursoAsync();
                     break;
                 case "3":
-                    await UpdateStudentAsync();
+                    await UpdateCursoAsync();
                     break;
                 case "4":
-                    await DeleteStudentAsync();
+                    await DeleteCursoAsync();
                     break;
                 case "5":
                     return;
@@ -68,6 +70,33 @@ class Program
         }
 
     }
+
+    public static async Task ListCursoAsync()
+    {
+        try
+        {
+            var cursos = await _cursoService.GetCursos();
+            if (cursos.Count == 0)
+            {
+                Console.WriteLine("No hay cursos registrados.");
+                return;
+            }
+            
+            Console.WriteLine("\n--- Lista de Cursos ---");
+            Console.WriteLine($"{"ID Curso",-5} {"Nombre Curso",-20} {"Descripción",-20} {"Precios X Hora",-30} {"Tipo de Curso",-15}");
+            Console.WriteLine(new string('-', 90));
+            
+            foreach (var curso in cursos)
+            {
+                Console.WriteLine($"{curso.Idcurso,-5} {curso.NombreCurso,-20} {curso.Descripcion,-20} {curso.PrecioxHora,-30} {curso.TipoCurso,-15}");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error al listar cursos: {e.Message}");
+            throw;
+        }
+    }
     
     private static async Task AddStudentAsync()
     {
@@ -99,6 +128,40 @@ class Program
         catch (Exception e)
         {
             Console.WriteLine($"Error al agregar estudiante: {e.Message}");
+            throw;
+        }
+    }
+
+    public static async Task AddCursoAsync()
+    {
+        try
+        {
+            Console.Write("ID Curso: ");
+            var idcurso = int.Parse(Console.ReadLine());
+            Console.Write("Nombre Curso: ");
+            var nombreCurso = Console.ReadLine();
+            Console.Write("Descripción: ");
+            var descripcion = Console.ReadLine();
+            Console.Write("Precio x Hora: ");
+            var precioxHora = double.Parse(Console.ReadLine());
+            Console.Write("Tipo de Curso: ");
+            var tipoCurso = Console.ReadLine();
+
+            var curso = new Curso()
+            {
+                Idcurso = idcurso,
+                NombreCurso = nombreCurso,
+                Descripcion = descripcion,
+                PrecioxHora = precioxHora,
+                TipoCurso = tipoCurso
+            };
+
+            await _cursoService.AddCurso(curso);
+            Console.WriteLine("Curso agregado correctamente.");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error al agregar curso: {e.Message}");
             throw;
         }
     }
@@ -135,6 +198,39 @@ class Program
             throw;
         }
     }
+
+    public static async Task UpdateCursoAsync()
+    {
+        try
+        {
+            Console.Write("ID Curso: ");
+            var idcurso = int.Parse(Console.ReadLine());
+            var curso = await _cursoService.GetCurso(idcurso);
+
+            if (curso == null)
+            {
+                Console.WriteLine("Curso no encontrado.");
+                return;
+            }
+
+            Console.Write("Nombre Curso: ");
+            curso.NombreCurso = Console.ReadLine();
+            Console.Write("Descripción: ");
+            curso.Descripcion = Console.ReadLine();
+            Console.Write("Precio x Hora: ");
+            curso.PrecioxHora = double.Parse(Console.ReadLine());
+            Console.Write("Tipo de Curso: ");
+            curso.TipoCurso = Console.ReadLine();
+
+            await _cursoService.UpdateCurso(curso);
+            Console.WriteLine("Curso actualizado correctamente.");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error al actualizar curso: {e.Message}");
+            throw;
+        }
+    }
     
     private static async Task DeleteStudentAsync()
     {
@@ -148,6 +244,22 @@ class Program
         catch (Exception e)
         {
             Console.WriteLine($"Error al eliminar estudiante: {e.Message}");
+            throw;
+        }
+    }
+
+    private static async Task DeleteCursoAsync()
+    {
+        try
+        {
+            Console.Write("ID Curso: ");
+            var idcurso = int.Parse(Console.ReadLine());
+            await _cursoService.DeleteCurso(idcurso);
+            Console.WriteLine("Curso eliminado correctamente.");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error al eliminar curso: {e.Message}");
             throw;
         }
     }
